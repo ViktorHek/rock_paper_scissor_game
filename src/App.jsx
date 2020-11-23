@@ -5,6 +5,12 @@ class App extends Component {
   state = {
     character: 'Choose your character'
   };
+
+  scoreBoard = (UserScore, ComputerScore) => {
+    let UserScore = 0
+    let ComputerScore = 0 
+  }
+
   ChooseRock = () => {
     this.setState({ character: 'You have chosen Rock'});
   };
@@ -29,6 +35,10 @@ class App extends Component {
           <button class="paper" id="paper" onClick={this.ChoosePaper}>Choose Paper</button>
           <button class="scissor" id="scissor" onClick={this.ChooseScissor}>Choose Scissor</button>
         </ul>
+        <div className="ScoreBoard">
+          <div className="ScoreBoardUser" id="ScoreBoardUser">{UserScore}</div>
+          <div className="ScoreBoardComputer" id="ScoreBoardComputer">{ComputerScore}</div>
+        </div>
       </div>
     )
   }
