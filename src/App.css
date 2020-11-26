@@ -1,0 +1,5 @@
+.game {
+    background-image: url('./arena.jpg');
+    background-position: center;
+    background-size: cover;
+}
