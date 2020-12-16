@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import DisplayPlayer from "./DisplayPlayer"
-import './HeroSection.css'
 import "./App.css"
 
 const pokemons = ["fire", "water", "grass", "starter"]
@@ -17,7 +16,7 @@ class Game extends Component {
     let interval = setInterval(() => {
       count++;
       this.setState({
-        computer: pokemons[Math.floor(Math.random() * 3)],
+        computer: pokemons[Math.floor(window.Math.random() * 3)],
         winner: ""
       })
       if(count > 5) {
@@ -81,7 +80,7 @@ class Game extends Component {
 
         <div className="winner" data-cy="winner">{winner && this.champion()}</div>
 
-        <button type="button" onClick={this.startFight}>Fight!</button>
+        <button type="button" data-cy="startFight" onClick={this.startFight}>Fight!</button>
       </div>
     )
   }

@@ -1,22 +1,27 @@
 describe("user win or lose", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000")
-        cy.get('[data-cy="rock"]').contains('Choose Fire').click()
-        cy.get("#me").should("contain", "You have chosen Rock")
+        cy.visit("http://localhost:3000", {
+            OnBeforeLoad(window) {
+                cy.stub(window.Math, "random").returns(1)
+            }
+        })
     })
     
-    it("user picks rock", () => {
-        cy.get("#you").contains("rock")
-        cy.get("[data-cy='winner']").should("contain", "Pokemons don't fight there friends")
-    })
-
-    it("user picks paper", () => {
-        cy.get("#you").contains("paper")
+    it("user picks fire", () => {
+        cy.get("[data-cy='fire']").contains('Choose Fire').click()
+        cy.get("[data-cy='startFight']").click()
         cy.get("[data-cy='winner']").should("contain", "You lose!")
     })
 
-    it("user picks scissor", () => {
-        cy.get("#you").contains("scissor")
+    it("user picks water", () => {
+        cy.get("[data-cy='water']").contains("Choose Water").click()
+        cy.get("[data-cy='startFight']").click()
+        cy.get("[data-cy='winner']").should("contain", "Pokemons don't fight there friends")
+    })
+
+    it("user picks grass", () => {
+        cy.get("[data-cy='grass']").contains("Choose Grass").click()
+        cy.get("[data-cy='startFight']").click()
         cy.get("[data-cy='winner']").should("contain", "You are the Champion")
     })
 })
