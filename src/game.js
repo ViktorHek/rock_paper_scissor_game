@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import Player from "./player"
+import DisplayPlayer from "./DisplayPlayer"
 import './HeroSection.css'
 import "./App.css"
 
-const characters = ["rock", "paper", "scissor", "starter"]
+const pokemons = ["fire", "water", "grass", "starter"]
 class Game extends Component {
     
   state = {
-    me: characters[3],
-    you: characters[3],
+    player: pokemons[3],
+    computer: pokemons[3],
     winner: ""
   };
 
@@ -17,7 +17,7 @@ class Game extends Component {
     let interval = setInterval(() => {
       count++;
       this.setState({
-        you: characters[Math.floor(Math.random() * 3)],
+        computer: pokemons[Math.floor(Math.random() * 3)],
         winner: ""
       })
       if(count > 5) {
@@ -30,57 +30,56 @@ class Game extends Component {
   }
 
   champion = () => {
-  const { me, you } = this.state
-    if ((me === "rock" && you === "scissor") ||
-      (me === "scissor" && you === "paper") ||
-      (me === "paper" && you === "rock")) {
+  const { player, computer } = this.state
+    if ((player === "fire" && computer === "grass") ||
+      (player === "grass" && computer === "water") ||
+      (player === "water" && computer === "fire")) {
       return "You are the Champion"
-    } else if (me === you) {
+    } else if (player === computer) {
       return "Pokemons don't fight there friends"
     } else {
       return "You lose!"
     }
   }
 
-  chooseCharacter = (character) => {
+  choosePokemon = (pokemon) => {
     this.setState({
-      me: character,
-      winner: ""
+      player: pokemon,
     })
   }
 
   render() {
-  const { me, you, winner } = this.state
+  const { player, computer, winner } = this.state
     return (
       <div className="hero-container">
-      <video src="/video-1.mp4" autoPlay loop muted/>
+      <video src="./video.mp4" autoPlay loop muted />
         <h1>Rock Paper Scissor. pokemon edition!</h1>
         <div id="playerSelection">
-          <Player character={me} />
-          <Player character={you} />
+          <DisplayPlayer pokemon={player} />
+          <DisplayPlayer pokemon={computer} />
         </div>
         <div class="selection">
           <button 
-            className="selectCharacter" 
-            data-cy="rock" 
-            onClick={() => this.chooseCharacter("rock")}
+            className="selectPokemon" 
+            data-cy="fire" 
+            onClick={() => this.choosePokemon("fire")}
           >Choose Fire
           </button>
           <button 
-            className="selectCharacter" 
-            data-cy="paper" 
-            onClick={() => this.chooseCharacter("paper")}
+            className="selectPokemon" 
+            data-cy="water" 
+            onClick={() => this.choosePokemon("water")}
           >Choose Water
           </button>
           <button 
-            className="selectCharacter" 
-            data-cy="scissor" 
-            onClick={() => this.chooseCharacter("scissor")}
+            className="selectPokemon" 
+            data-cy="grass" 
+            onClick={() => this.choosePokemon("grass")}
           >Choose Grass
           </button>
         </div>
 
-        <div className="winner" data-cy="winner">{winner ? this.champion() : null}</div>
+        <div className="winner" data-cy="winner">{winner && this.champion()}</div>
 
         <button type="button" onClick={this.startFight}>Fight!</button>
       </div>
