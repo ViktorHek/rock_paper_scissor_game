@@ -11,7 +11,7 @@ The game is simple. You pick a pokemon based on it's element. If an element is s
 
 ## intalation
 
-1. Fork and clone [this repo] to your local workspace.
+1. Fork and clone this repo to your local workspace.
 
 2. run ```yarn```
 
