@@ -9,6 +9,16 @@ The game is simple. You pick a pokemon based on it's element. If an element is s
 * "Pokemons don't fight there friends" - if you tie
 * "You lose!" - if you lose
 
+## intalation
+
+1. Fork and clone [this repo] to your local workspace.
+
+2. run ```yarn```
+
+3. run ```yarn start```
+
+4. Have Fun!
+
 ## User stories
 ```
 As a visitor
